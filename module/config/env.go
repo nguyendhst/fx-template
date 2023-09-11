@@ -3,6 +3,7 @@ package config
 import (
 	"errors"
 	"log"
+	"os"
 
 	"github.com/spf13/viper"
 )
@@ -60,7 +61,7 @@ func readFromEnvProd(env *Env) error {
 func NewEnv() (*Env, error) {
 	env := Env{}
 
-	switch env.AppEnv {
+	switch os.Getenv("APP_ENV") {
 	case "development":
 		err := readFromEnv(&env)
 		if err != nil {

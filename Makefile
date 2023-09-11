@@ -1,8 +1,14 @@
 #!make
-include .env
-
+-include .env
+export
 
 default: up
+
+bootstrap:
+	go mod download
+	go mod tidy
+	if [ ! -f .env ]; then touch .env && cp .env.example .env; fi
+	if [ ! -f ./sqlc/schema.sql ]; then cp sqlc/schema.sql.example sqlc/schema.sql; fi
 
 migrate-lint:
 	atlas migrate lint \
@@ -32,10 +38,10 @@ db-ui:
 		--web
 
 up:
-	docker compose -f compose.local.yaml up --force-recreate
+	docker compose -f compose.local.yaml up -d --force-recreate
 
 up-hard:
-	docker compose -f compose.local.yaml up --force-recreate --build
+	docker compose -f compose.local.yaml up -d --force-recreate --build
 
 down:
 	docker compose down
