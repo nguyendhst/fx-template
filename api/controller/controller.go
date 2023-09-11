@@ -1,8 +1,8 @@
 package controller
 
 import (
-	loginController "github.com/nguyendhst/clean-architecture-skeleton/api/controller/login"
-	registerController "github.com/nguyendhst/clean-architecture-skeleton/api/controller/register"
+	loginController "github.com/nguyendhst/lagile/api/controller/login"
+	registerController "github.com/nguyendhst/lagile/api/controller/register"
 	"go.uber.org/fx"
 )
 

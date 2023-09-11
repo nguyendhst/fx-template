@@ -1,10 +1,10 @@
 package route
 
 import (
-	register "github.com/nguyendhst/clean-architecture-skeleton/api/controller/register"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/httpserver"
-	"github.com/nguyendhst/clean-architecture-skeleton/shared/constant"
+	register "github.com/nguyendhst/lagile/api/controller/register"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/module/httpserver"
+	"github.com/nguyendhst/lagile/shared/constant"
 )
 
 func NewPublicUserRouter(env *config.Env, server *httpserver.Server, controller *register.RegisterController) {

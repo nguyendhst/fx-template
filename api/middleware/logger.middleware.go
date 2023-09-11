@@ -7,7 +7,7 @@ import (
 	v4 "github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/logger"
+	"github.com/nguyendhst/lagile/module/logger"
 )
 
 func LoggerMiddleware(lg logger.Logger) echo.MiddlewareFunc {

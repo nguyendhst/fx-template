@@ -1,7 +1,7 @@
 package repository
 
 import (
-	userRepository "github.com/nguyendhst/clean-architecture-skeleton/repository/user"
+	userRepository "github.com/nguyendhst/lagile/repository/user"
 	"go.uber.org/fx"
 )
 

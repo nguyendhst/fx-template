@@ -4,10 +4,10 @@ import (
 	"context"
 	"database/sql"
 
-	domain "github.com/nguyendhst/clean-architecture-skeleton/domain/user"
-	db "github.com/nguyendhst/clean-architecture-skeleton/module/database"
-	"github.com/nguyendhst/clean-architecture-skeleton/shared/util"
-	sqlc "github.com/nguyendhst/clean-architecture-skeleton/sqlc/generated"
+	domain "github.com/nguyendhst/lagile/domain/user"
+	db "github.com/nguyendhst/lagile/module/database"
+	"github.com/nguyendhst/lagile/shared/util"
+	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
 )
 
 type userRepository struct {

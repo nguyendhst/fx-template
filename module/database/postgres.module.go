@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	sqlc "github.com/nguyendhst/clean-architecture-skeleton/sqlc/generated"
+	"github.com/nguyendhst/lagile/module/config"
+	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
 )
 
 type (

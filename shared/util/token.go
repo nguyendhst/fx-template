@@ -6,8 +6,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 
 	jwt "github.com/golang-jwt/jwt/v4"
-	auth "github.com/nguyendhst/clean-architecture-skeleton/domain/auth"
-	user "github.com/nguyendhst/clean-architecture-skeleton/domain/user"
+	auth "github.com/nguyendhst/lagile/domain/auth"
+	user "github.com/nguyendhst/lagile/domain/user"
 )
 
 func CreateAccessToken(user *user.User, secret string, expiryHours int) (accessToken string, err error) {

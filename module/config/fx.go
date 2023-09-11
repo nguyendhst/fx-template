@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/nguyendhst/clean-architecture-skeleton/shared/constant"
+	"github.com/nguyendhst/lagile/shared/constant"
 	"go.uber.org/fx"
 )
 

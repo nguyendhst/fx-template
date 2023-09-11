@@ -4,10 +4,10 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/nguyendhst/clean-architecture-skeleton/domain/auth"
-	resperr "github.com/nguyendhst/clean-architecture-skeleton/domain/response/error"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/shared/util"
+	"github.com/nguyendhst/lagile/domain/auth"
+	resperr "github.com/nguyendhst/lagile/domain/response/error"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/shared/util"
 )
 
 type LoginController struct {

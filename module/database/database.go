@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 
-	sqlc "github.com/nguyendhst/clean-architecture-skeleton/sqlc/generated"
+	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
 )
 
 type Database interface {

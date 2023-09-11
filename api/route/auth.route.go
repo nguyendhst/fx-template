@@ -1,10 +1,10 @@
 package route
 
 import (
-	loginController "github.com/nguyendhst/clean-architecture-skeleton/api/controller/login"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/httpserver"
-	"github.com/nguyendhst/clean-architecture-skeleton/shared/constant"
+	loginController "github.com/nguyendhst/lagile/api/controller/login"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/module/httpserver"
+	"github.com/nguyendhst/lagile/shared/constant"
 )
 
 func NewAuthenticationRouter(env *config.Env, server *httpserver.Server, controller *loginController.LoginController) {

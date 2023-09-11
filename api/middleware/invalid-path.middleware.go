@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"github.com/labstack/echo/v4"
-	resperr "github.com/nguyendhst/clean-architecture-skeleton/domain/response/error"
+	resperr "github.com/nguyendhst/lagile/domain/response/error"
 )
 
 func InvalidPathResponseFormatMiddleware(next echo.HandlerFunc) echo.HandlerFunc {

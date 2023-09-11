@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	auth "github.com/nguyendhst/clean-architecture-skeleton/domain/auth"
-	user "github.com/nguyendhst/clean-architecture-skeleton/domain/user"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/shared/util"
+	auth "github.com/nguyendhst/lagile/domain/auth"
+	user "github.com/nguyendhst/lagile/domain/user"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/shared/util"
 )
 
 type loginUsecase struct {

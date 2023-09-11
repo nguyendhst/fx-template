@@ -1,4 +1,4 @@
-module github.com/nguyendhst/clean-architecture-skeleton
+module github.com/nguyendhst/lagile
 
 go 1.20
 

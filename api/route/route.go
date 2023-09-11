@@ -1,10 +1,10 @@
 package route
 
 import (
-	login "github.com/nguyendhst/clean-architecture-skeleton/api/controller/login"
-	register "github.com/nguyendhst/clean-architecture-skeleton/api/controller/register"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/httpserver"
+	login "github.com/nguyendhst/lagile/api/controller/login"
+	register "github.com/nguyendhst/lagile/api/controller/register"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/module/httpserver"
 	"go.uber.org/fx"
 )
 

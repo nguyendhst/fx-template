@@ -3,7 +3,7 @@ package middleware
 import (
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
-	errorResponse "github.com/nguyendhst/clean-architecture-skeleton/domain/response/error"
+	errorResponse "github.com/nguyendhst/lagile/domain/response/error"
 )
 
 // JwtMiddleware is a middleware that provides a JSON Web Token (JWT) authentication.

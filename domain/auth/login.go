@@ -3,7 +3,7 @@ package auth
 import (
 	"context"
 
-	u "github.com/nguyendhst/clean-architecture-skeleton/domain/user"
+	u "github.com/nguyendhst/lagile/domain/user"
 )
 
 type LoginRequest struct {

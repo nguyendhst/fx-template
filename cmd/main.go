@@ -2,14 +2,14 @@ package main
 
 import (
 	_ "github.com/lib/pq"
-	"github.com/nguyendhst/clean-architecture-skeleton/api/controller"
-	"github.com/nguyendhst/clean-architecture-skeleton/api/route"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/database"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/httpserver"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/logger"
-	"github.com/nguyendhst/clean-architecture-skeleton/repository"
-	"github.com/nguyendhst/clean-architecture-skeleton/usecase"
+	"github.com/nguyendhst/lagile/api/controller"
+	"github.com/nguyendhst/lagile/api/route"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/module/database"
+	"github.com/nguyendhst/lagile/module/httpserver"
+	"github.com/nguyendhst/lagile/module/logger"
+	"github.com/nguyendhst/lagile/repository"
+	"github.com/nguyendhst/lagile/usecase"
 	"go.uber.org/fx"
 )
 

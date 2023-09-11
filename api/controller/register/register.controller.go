@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/labstack/echo/v4"
-	resperr "github.com/nguyendhst/clean-architecture-skeleton/domain/response/error"
-	domain "github.com/nguyendhst/clean-architecture-skeleton/domain/user"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
+	resperr "github.com/nguyendhst/lagile/domain/response/error"
+	domain "github.com/nguyendhst/lagile/domain/user"
+	"github.com/nguyendhst/lagile/module/config"
 )
 
 type (

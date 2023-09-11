@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	response "github.com/nguyendhst/clean-architecture-skeleton/domain/response"
-	domain "github.com/nguyendhst/clean-architecture-skeleton/domain/user"
+	response "github.com/nguyendhst/lagile/domain/response"
+	domain "github.com/nguyendhst/lagile/domain/user"
 )
 
 type (

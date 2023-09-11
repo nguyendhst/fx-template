@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/nguyendhst/clean-architecture-skeleton/api/middleware"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/config"
-	"github.com/nguyendhst/clean-architecture-skeleton/module/logger"
+	"github.com/nguyendhst/lagile/api/middleware"
+	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/module/logger"
 	"go.uber.org/fx"
 )
 

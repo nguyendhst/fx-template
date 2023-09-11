@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/nguyendhst/clean-architecture-skeleton/domain/response"
+	"github.com/nguyendhst/lagile/domain/response"
 )
 
 type (
