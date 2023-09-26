@@ -13,6 +13,9 @@ func NewProductionEnv() (*Env, error) {
 	return NewLocalEnv("", "./config")
 }
 
+// NewLocalEnv reads in config from a local file or from the search paths.
+// If a filepath is provided, it will read in the config from that file instead of searching.
+// If no filepath is provided, it will search for a file named server-config.yaml in the search paths.
 func NewLocalEnv(filePath string, searchPaths ...string) (*Env, error) {
 	v := viper.New()
 

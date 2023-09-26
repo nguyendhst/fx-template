@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -23,12 +22,17 @@ func TestReadYAMLConfig(t *testing.T) {
 		t.Fatal(err)
 	}
 	// Read the YAML config file
-	config, err := New(configFile)
+	configReader, err := NewConfigReader("local", configFile, []string{})
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	fmt.Printf("%+v\n", config)
+	config, err := configReader.ReadConfig()
+	if err != nil {
+		t.Fatal(nil)
+	}
+
+	// fmt.Printf("%+v\n", config)
 
 	// Check that the config was read
 	assert.NotEmpty(t, config)
