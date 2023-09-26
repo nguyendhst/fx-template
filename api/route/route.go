@@ -1,7 +1,7 @@
 package route
 
 import (
-	login "github.com/nguyendhst/lagile/api/controller/login"
+	adminLogin "github.com/nguyendhst/lagile/api/controller/admin-login"
 	register "github.com/nguyendhst/lagile/api/controller/register"
 	"github.com/nguyendhst/lagile/module/config"
 	"github.com/nguyendhst/lagile/module/httpserver"
@@ -16,20 +16,18 @@ type (
 
 		Env                *config.Env
 		Server             *httpserver.Server
-		LoginController    *login.LoginController
+		LoginController    *adminLogin.AdminLoginController
 		RegisterController *register.RegisterController
 	}
 )
 
 func NewRouter(p Params) {
-
 	s := p.Server.SetPrefix("/api/v1")
 
 	// Public API for authentication
 	NewAuthenticationRouter(p.Env, s, p.LoginController)
-
 	NewPublicUserRouter(p.Env, s, p.RegisterController)
+
 	// Private API for user
 	NewPrivateUserRouter(p.Env, s)
-
 }

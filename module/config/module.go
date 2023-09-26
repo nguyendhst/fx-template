@@ -7,5 +7,5 @@ import (
 
 var Module = fx.Module(
 	constant.CONFIG_MODULE,
-	fx.Provide(NewEnv),
+	fx.Provide(New),
 )

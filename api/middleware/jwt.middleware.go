@@ -17,7 +17,6 @@ func JWTMiddleware(secret string) echo.MiddlewareFunc {
 				errorResponse.AUTHENTICATION_FAILED_UNAUTHORIZED_MESSAGE,
 				errorResponse.AUTHENTICATION_FAILED_UNAUTHORIZED_CODE,
 			)
-
 		},
 	})
 }

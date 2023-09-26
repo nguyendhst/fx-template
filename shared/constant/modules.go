@@ -9,4 +9,7 @@ const (
 
 	USER_ROUTE_PREFIX           = "/user"
 	AUTHENTICATION_ROUTE_PREFIX = "/auth"
+
+	STORE_TYPE_POSTGRES = "postgres"
+	STORE_TYPE_MONGO    = "mongo"
 )

@@ -2,8 +2,6 @@ package user
 
 import (
 	"context"
-
-	"github.com/nguyendhst/lagile/domain/response"
 )
 
 type (
@@ -21,6 +19,5 @@ type (
 )
 
 type RegisterUsecase interface {
-	NewResponse(user *UserRegisterResponse) response.Response
 	RegisterUser(c context.Context, user *User) (*User, error)
 }

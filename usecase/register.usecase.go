@@ -4,33 +4,22 @@ import (
 	"context"
 	"time"
 
-	response "github.com/nguyendhst/lagile/domain/response"
 	domain "github.com/nguyendhst/lagile/domain/user"
+	"github.com/nguyendhst/lagile/repository"
 )
 
 type (
 	registerUsecase struct {
-		userRepository domain.UserRepository
+		userRepository repository.UserRepository
 		contextTimeout time.Duration
 	}
 )
 
-func NewRegisterUsecase(userRepository domain.UserRepository) domain.RegisterUsecase {
+func NewRegisterUsecase(userRepository repository.UserRepository) domain.RegisterUsecase {
 	return &registerUsecase{
 		userRepository: userRepository,
 		contextTimeout: time.Millisecond * 5000,
 	}
-}
-
-func (ru *registerUsecase) NewResponse(user *domain.UserRegisterResponse) response.Response {
-	meta := response.NewResponseMeta(200, "OK", "")
-	data := &domain.UserRegisterResponse{
-		ID:    user.ID,
-		Name:  user.Name,
-		Email: user.Email,
-	}
-
-	return response.NewResponse(meta, data)
 }
 
 func (ru *registerUsecase) RegisterUser(c context.Context, u *domain.User) (*domain.User, error) {

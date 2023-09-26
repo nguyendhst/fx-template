@@ -3,73 +3,46 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
+	"time"
 
 	_ "github.com/lib/pq"
 	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/shared/util"
 	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
 )
 
-type (
-	database struct {
-		*sql.DB
-		*config.Env
-		*sqlc.Queries
-	}
+// New Postgres client
+func NewPostgresClient(env *config.Env) (*sqlc.Queries, error) {
+	// ctx := context.Background()
+	withRetry := 3
+	uri := getDSN(env)
 
-	table struct {
-		*sql.DB
-		query string
-	}
-)
+	var client *sqlc.Queries
+	var sqldb *sql.DB
+	var err error
 
-func NewPostgresDatabase(env *config.Env) (Database, error) {
-	db := &database{
-		Env: env,
-		DB:  nil,
-	}
-	err := db.Connect()
-	if err != nil {
+	if err := util.Retry(withRetry, 5*time.Second, func() error {
+		sqldb, err = sql.Open("postgres", uri)
+		if err != nil {
+			return err
+		}
+		client = sqlc.New(sqldb)
+		return sqldb.Ping()
+	}); err != nil {
 		return nil, err
 	}
 
-	return db, nil
-}
-
-func (db *database) String() string {
-	return "postgres"
-}
-
-func (db *database) Connect() error {
-	var err error
-	var dsn = getDSN(db.Env)
-	fmt.Println(dsn)
-	db.DB, err = sql.Open("postgres", dsn)
-	if err != nil {
-		return err
-	}
-	db.Queries = sqlc.New(db.DB)
-	return nil
-}
-
-func (db *database) Close() error {
-	return db.DB.Close()
-}
-
-func (db *database) GetDBConnection() *sql.DB {
-	return db.DB
-}
-
-func (db *database) GetQueries() *sqlc.Queries {
-	return db.Queries
+	return client, nil
 }
 
 func getDSN(env *config.Env) string {
 	return fmt.Sprintf(
 		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		env.DBUser,
-		env.DBPass,
-		env.DBHost,
-		env.DBPort,
-		env.DBName,
+		env.Database.Postgres.User,
+		env.Database.Postgres.Password,
+		env.Database.Postgres.Host,
+		strconv.Itoa(env.Database.Postgres.Port),
+		env.Database.Postgres.Name,
 	)
 }

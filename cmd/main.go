@@ -1,10 +1,11 @@
 package main
 
 import (
-	_ "github.com/lib/pq"
+	"flag"
+
 	"github.com/nguyendhst/lagile/api/route"
-	"github.com/nguyendhst/lagile/internal/core"
 	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/lagile/module/core"
 	"github.com/nguyendhst/lagile/module/database"
 	"github.com/nguyendhst/lagile/module/httpserver"
 	"github.com/nguyendhst/lagile/module/logger"
@@ -12,18 +13,20 @@ import (
 )
 
 func main() {
+	env := flag.String("env", "local", "Environment")
+	flag.Parse()
 
-	cfg, err := config.NewEnv()
+	cfg, err := config.New(*env)
 	if err != nil {
 		panic(err)
 	}
 
 	app := fx.New(
-		core.GetModule(*cfg),
+		core.GetModule(cfg.Env),
 		logger.Module,
-		config.Module,
-		database.Module,
-		fx.Invoke(route.NewRouter),
+		database.GetModule(cfg.Env),
+		route.Module,
+		// fx.Invoke(route.NewRouter),
 
 		fx.Invoke(func(server *httpserver.Server) error {
 			go server.Start()
@@ -31,5 +34,4 @@ func main() {
 		}),
 	)
 	app.Run()
-
 }

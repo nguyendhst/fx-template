@@ -2,7 +2,7 @@ version: "2"
 sql:
   - engine: "postgresql"
     queries:
-      - "repository/user/user.query.sql"
+      - "repository/user/postgres/user.sql"
     schema: "sqlc/schema.sql"
     gen:
       go:

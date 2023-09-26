@@ -1,8 +1,6 @@
 package register
 
 import (
-	"fmt"
-
 	"github.com/labstack/echo/v4"
 	resperr "github.com/nguyendhst/lagile/domain/response/error"
 	domain "github.com/nguyendhst/lagile/domain/user"
@@ -36,18 +34,15 @@ func (rc *RegisterController) RegisterUser(c echo.Context) error {
 		Email:    req.Email,
 		Password: req.Password,
 	})
-
 	if err != nil {
 		return resperr.InternalServerError(c, resperr.INTERNAL_SERVER_ERROR_MESSAGE, resperr.INTERNAL_SERVER_ERROR_CODE)
 	}
 
-	res := rc.RegisterUsecase.NewResponse(&domain.UserRegisterResponse{
+	res := domain.UserRegisterResponse{
 		ID:    user.ID,
 		Name:  user.Name,
 		Email: user.Email,
-	})
-
-	fmt.Println(res)
+	}
 
 	return c.JSON(200, res)
 }

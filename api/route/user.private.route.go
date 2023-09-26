@@ -11,7 +11,6 @@ func NewPrivateUserRouter(env *config.Env, server *httpserver.Server) {
 	userRoute := server.Prefix.Group(constant.USER_ROUTE_PREFIX)
 
 	// Apply middleware
-	userRoute.Use(middleware.JWTMiddleware(env.AccessTokenSecret))
+	userRoute.Use(middleware.JWTMiddleware(env.Secret.JwtSecret.Access.Key))
 	// Login
-
 }

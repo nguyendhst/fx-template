@@ -38,7 +38,7 @@ func (s *Server) Start() error {
 	if err != nil {
 		return err
 	}
-	os.WriteFile("routes.json", data, 0644)
+	os.WriteFile("routes.json", data, 0o644)
 
 	err = s.Server.Start(s.ServerConfig.ServerAddress)
 
@@ -86,9 +86,14 @@ func NewEchoServer(p Params) *Server {
 		middleware.LoggerMiddleware(p.Logger),
 	)
 
+	rateLimit := 0
+	if p.Env.App.Server.RateLimit.Enabled {
+		rateLimit = p.Env.App.Server.RateLimit.Max
+	}
+
 	return &Server{Server: server, ServerConfig: &ServerConfig{
-		ServerAddress: p.Env.ServerAddress,
-		RateLimit:     p.Env.RateLimit,
+		ServerAddress: p.Env.App.Server.Address,
+		RateLimit:     rateLimit,
 		Logger:        p.Logger,
 	}}
 }

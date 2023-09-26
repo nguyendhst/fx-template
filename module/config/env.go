@@ -2,90 +2,79 @@ package config
 
 import (
 	"errors"
-	"log"
-	"os"
+	"fmt"
+	"reflect"
+	"strings"
 
 	"github.com/spf13/viper"
 )
 
-type Env struct {
-	AppEnv                 string `mapstructure:"APP_ENV"`
-	ServerAddress          string `mapstructure:"SERVER_ADDRESS"`
-	ContextTimeout         int    `mapstructure:"CONTEXT_TIMEOUT"`
-	DBHost                 string `mapstructure:"DB_HOST"`
-	DBPort                 string `mapstructure:"DB_PORT"`
-	DBUser                 string `mapstructure:"DB_USER"`
-	DBPass                 string `mapstructure:"DB_PASSWORD"`
-	DBName                 string `mapstructure:"DB_NAME"`
-	AccessTokenExpiryHour  int    `mapstructure:"JWT_ACCESS_TOKEN_EXPIRATION_HOUR"`
-	RefreshTokenExpiryHour int    `mapstructure:"JWT_REFRESH_TOKEN_EXPIRATION_HOUR"`
-	AccessTokenSecret      string `mapstructure:"JWT_ACCESS_TOKEN_SECRET"`
-	RefreshTokenSecret     string `mapstructure:"JWT_REFRESH_TOKEN_SECRET"`
-	RateLimit              int    `mapstructure:"RATE_LIMIT"`
-	LoginUsecaseTimeout_MS int    `mapstructure:"LOGIN_USECASE_TIMEOUT_MS"`
-	BypassDBPing           bool   `mapstructure:"BYPASS_DB"`
+func NewProductionEnv() (*Env, error) {
+	return NewLocalEnv("", "./config")
 }
 
-func readFromEnv(env *Env) error {
-	viper.SetConfigFile(".env")
+func NewLocalEnv(filePath string, searchPaths ...string) (*Env, error) {
+	v := viper.New()
 
-	err := viper.ReadInConfig()
-	if err != nil {
-		return err
-	}
+	v.SetConfigName("server-config")
 
-	return viper.Unmarshal(env)
-
-}
-
-func readFromEnvProd(env *Env) error {
-	viper.BindEnv("APP_ENV")
-	viper.BindEnv("SERVER_ADDRESS")
-	viper.BindEnv("CONTEXT_TIMEOUT")
-	viper.BindEnv("DB_HOST")
-	viper.BindEnv("DB_PORT")
-	viper.BindEnv("DB_USER")
-	viper.BindEnv("DB_PASSWORD")
-	viper.BindEnv("DB_NAME")
-	viper.BindEnv("JWT_ACCESS_TOKEN_EXPIRATION_HOUR")
-	viper.BindEnv("JWT_REFRESH_TOKEN_EXPIRATION_HOUR")
-	viper.BindEnv("JWT_ACCESS_TOKEN_SECRET")
-	viper.BindEnv("JWT_REFRESH_TOKEN_SECRET")
-	viper.BindEnv("RATE_LIMIT")
-	viper.BindEnv("LOGIN_USECASE_TIMEOUT_MS")
-	viper.BindEnv("BYPASS_DB")
-
-	return viper.Unmarshal(env)
-}
-
-func NewEnv() (*Env, error) {
-	env := Env{}
-
-	switch os.Getenv("APP_ENV") {
-	case "development":
-		err := readFromEnv(&env)
-		if err != nil {
-			return nil, err
+	if filePath != "" {
+		fmt.Println(filePath)
+		v.SetConfigFile(filePath)
+	} else {
+		for _, sp := range searchPaths {
+			v.AddConfigPath(sp)
 		}
+	}
 
-	case "production":
-		err := readFromEnvProd(&env)
-		if err != nil {
-			return nil, err
+	bindEnvsAndDefaults(v, defaultConfig)
+
+	if filePath != "" || len(searchPaths) > 0 {
+		if err := v.ReadInConfig(); err != nil {
+			if !errors.As(err, &viper.ConfigFileNotFoundError{}) {
+				return &Env{}, fmt.Errorf("could not read in config from viper: %w", err)
+			}
 		}
-
-	default:
-		return nil, errors.New("APP_ENV is not set")
 	}
 
-	err := viper.Unmarshal(&env)
-	if err != nil {
-		return nil, err
+	var cfg *Env
+	if err := v.Unmarshal(&cfg); err != nil {
+		return &Env{}, fmt.Errorf("could not unmarshal loaded viper config: %w", err)
 	}
 
-	if env.AppEnv == "development" {
-		log.Println("The App is running in development env")
-	}
+	return cfg, nil
+}
 
-	return &env, nil
+func bindEnvsAndDefaults(vi *viper.Viper, iface interface{}, parts ...string) {
+	ifv := reflect.ValueOf(iface)
+	ift := reflect.TypeOf(iface)
+	for i := 0; i < ift.NumField(); i++ {
+		v := ifv.Field(i)
+		t := ift.Field(i)
+		tv, ok := t.Tag.Lookup("mapstructure")
+		if !ok {
+			continue
+		}
+		switch v.Kind() {
+		case reflect.Struct:
+			bindEnvsAndDefaults(vi, v.Interface(), append(parts, tv)...)
+		default:
+			p := strings.Join(append(parts, tv), ".")
+			bindEnv(vi, p)
+			setDefault(vi, p, v.Interface())
+		}
+	}
+}
+
+func setDefault(vi *viper.Viper, key string, value interface{}) {
+	if !reflect.ValueOf(value).IsZero() {
+		vi.SetDefault(key, value)
+	}
+}
+
+func bindEnv(vi *viper.Viper, key string) {
+	envVar := strings.ReplaceAll(key, ".", "_")
+	envVar = strings.ToUpper(envVar)
+
+	vi.BindEnv(key, envVar)
 }

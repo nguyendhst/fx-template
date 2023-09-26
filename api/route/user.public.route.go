@@ -11,5 +11,4 @@ func NewPublicUserRouter(env *config.Env, server *httpserver.Server, controller 
 	userRoute := server.Prefix.Group(constant.USER_ROUTE_PREFIX)
 
 	userRoute.POST("/register", controller.RegisterUser)
-
 }

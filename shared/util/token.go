@@ -10,8 +10,8 @@ import (
 	user "github.com/nguyendhst/lagile/domain/user"
 )
 
-func CreateAccessToken(user *user.User, secret string, expiryHours int) (accessToken string, err error) {
-	exp := time.Now().Add(time.Hour * time.Duration(expiryHours))
+func CreateAccessToken(user *user.User, secret string, expiration time.Duration) (accessToken string, err error) {
+	exp := time.Now().Add(expiration)
 	claims := &auth.JwtCustomClaims{
 		Name: user.Name,
 		ID:   user.ID,
@@ -27,8 +27,8 @@ func CreateAccessToken(user *user.User, secret string, expiryHours int) (accessT
 	return t, err
 }
 
-func CreateRefreshToken(user *user.User, secret string, expiryHours int) (refreshToken string, err error) {
-	exp := time.Now().Add(time.Hour * time.Duration(expiryHours))
+func CreateRefreshToken(user *user.User, secret string, expiration time.Duration) (refreshToken string, err error) {
+	exp := time.Now().Add(expiration)
 	claimsRefresh := &auth.JwtCustomRefreshClaims{
 		ID: user.ID,
 		RegisteredClaims: jwt.RegisteredClaims{

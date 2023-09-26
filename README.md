@@ -7,3 +7,4 @@
 - Deploy script
 - API Spec
 - Error monitoring
+- Secret management

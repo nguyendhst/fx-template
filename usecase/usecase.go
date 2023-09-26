@@ -7,7 +7,7 @@ import (
 // Provide your usecase implementations here.
 func New() fx.Option {
 	return fx.Provide(
-		NewLoginUsecase,
+		NewAdminLoginUsecase,
 		NewRegisterUsecase,
 	)
 }

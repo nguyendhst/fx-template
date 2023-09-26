@@ -1,16 +1,20 @@
 package database
 
 import (
-	"github.com/nguyendhst/lagile/shared/constant"
+	"github.com/nguyendhst/lagile/module/config"
+	_ "github.com/nguyendhst/lagile/shared/constant"
 	"go.uber.org/fx"
 )
 
-var Module = fx.Module(
-	constant.DATABASE_MODULE,
-	fx.Provide(
-		fx.Annotate(
-			NewPostgresDatabase,
-			fx.As(new(Database)),
-		),
-	),
-)
+func GetModule(env config.Env) fx.Option {
+	var opts []fx.Option
+
+	if env.Database.Postgres.Host != "" {
+		opts = append(opts, fx.Provide(NewPostgresClient))
+	}
+	if env.Database.Mongo.Host != "" {
+		opts = append(opts, fx.Provide(NewMongoClient))
+	}
+
+	return fx.Options(opts...)
+}

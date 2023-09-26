@@ -1,0 +1,13 @@
+{
+	"go.useLanguageServer": true,
+	"gopls": {
+		"formatting.gofumpt": true,
+	},
+	"cSpell.words": [
+		"lagile",
+		"mapstructure",
+		"sqlc",
+		"sslmode",
+		"Usecase"
+	],
+}
