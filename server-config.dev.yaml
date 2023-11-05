@@ -30,13 +30,13 @@ database:
     port: 27017
     user: root
     password: example
-    name: lagile
+    name: fx-template
   postgres:
     host: 127.0.0.1
     port: 5432
     user: postgres
     password: postgres
-    name: lagile
+    name: fx-template
   redis:
     host: redis
     port: 6379

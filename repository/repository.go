@@ -1,10 +1,10 @@
 package repository
 
 import (
-	"github.com/nguyendhst/lagile/module/config"
-	user_postgres "github.com/nguyendhst/lagile/repository/user/postgres"
-	constant "github.com/nguyendhst/lagile/shared/constant"
-	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
+	"github.com/nguyendhst/fx-template/module/config"
+	user_postgres "github.com/nguyendhst/fx-template/repository/user/postgres"
+	constant "github.com/nguyendhst/fx-template/shared/constant"
+	sqlc "github.com/nguyendhst/fx-template/sqlc/generated"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.uber.org/fx"
 )

@@ -1,8 +1,8 @@
 package controller
 
 import (
-	adminLoginController "github.com/nguyendhst/lagile/api/controller/admin-login"
-	registerController "github.com/nguyendhst/lagile/api/controller/register"
+	adminLoginController "github.com/nguyendhst/fx-template/api/controller/admin-login"
+	registerController "github.com/nguyendhst/fx-template/api/controller/register"
 	"go.uber.org/fx"
 )
 

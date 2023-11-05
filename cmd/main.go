@@ -3,12 +3,12 @@ package main
 import (
 	"flag"
 
-	"github.com/nguyendhst/lagile/api/route"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/module/core"
-	"github.com/nguyendhst/lagile/module/database"
-	"github.com/nguyendhst/lagile/module/httpserver"
-	"github.com/nguyendhst/lagile/module/logger"
+	"github.com/nguyendhst/fx-template/api/route"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/module/core"
+	"github.com/nguyendhst/fx-template/module/database"
+	"github.com/nguyendhst/fx-template/module/httpserver"
+	"github.com/nguyendhst/fx-template/module/logger"
 	"go.uber.org/fx"
 )
 

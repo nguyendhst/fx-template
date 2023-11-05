@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/shared/util"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/shared/util"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"

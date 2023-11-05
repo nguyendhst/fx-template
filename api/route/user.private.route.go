@@ -1,10 +1,10 @@
 package route
 
 import (
-	"github.com/nguyendhst/lagile/api/middleware"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/module/httpserver"
-	"github.com/nguyendhst/lagile/shared/constant"
+	"github.com/nguyendhst/fx-template/api/middleware"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/module/httpserver"
+	"github.com/nguyendhst/fx-template/shared/constant"
 )
 
 func NewPrivateUserRouter(cfg *config.Config, server *httpserver.Server) {

@@ -3,13 +3,13 @@ package admin_login
 import (
 	"net/http"
 
-	"github.com/nguyendhst/lagile/domain/auth"
-	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/fx-template/domain/auth"
+	"github.com/nguyendhst/fx-template/module/config"
 
 	"github.com/labstack/echo/v4"
-	response_error "github.com/nguyendhst/lagile/domain/response/error"
+	response_error "github.com/nguyendhst/fx-template/domain/response/error"
 
-	"github.com/nguyendhst/lagile/shared/util"
+	"github.com/nguyendhst/fx-template/shared/util"
 )
 
 type (

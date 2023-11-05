@@ -1,4 +1,4 @@
-module github.com/nguyendhst/lagile
+module github.com/nguyendhst/fx-template
 
 go 1.20
 

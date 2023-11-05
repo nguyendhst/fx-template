@@ -7,9 +7,9 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/shared/util"
-	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/shared/util"
+	sqlc "github.com/nguyendhst/fx-template/sqlc/generated"
 )
 
 // New Postgres client
