@@ -5,10 +5,10 @@ import (
 	"go.uber.org/fx"
 )
 
-func GetModule(env *config.Env) fx.Option {
+func GetModule(cfg *config.Config) fx.Option {
 	var opts []fx.Option
 
-	if env.Secret.OAuth2.Provider.Google.ClientID != "" {
+	if cfg.Env.Secret.OAuth2.Provider.Google.ClientID != "" {
 		opts = append(opts, fx.Provide(NewGoogleProvider))
 	}
 

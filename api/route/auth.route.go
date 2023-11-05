@@ -7,7 +7,7 @@ import (
 	"github.com/nguyendhst/lagile/shared/constant"
 )
 
-func NewAuthenticationRouter(env *config.Env, server *httpserver.Server, controller *loginController.AdminLoginController) {
+func NewAuthenticationRouter(cfg *config.Config, server *httpserver.Server, controller *loginController.AdminLoginController) {
 	authRoute := server.Prefix.Group(constant.AUTHENTICATION_ROUTE_PREFIX)
 
 	// Login

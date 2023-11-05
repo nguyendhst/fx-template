@@ -10,14 +10,14 @@ import (
 type (
 	RegisterController struct {
 		RegisterUsecase domain.RegisterUsecase
-		Env             *config.Env
+		Configs         *config.Config
 	}
 )
 
-func New(registerUsecase domain.RegisterUsecase, env *config.Env) *RegisterController {
+func New(registerUsecase domain.RegisterUsecase, config *config.Config) *RegisterController {
 	return &RegisterController{
 		RegisterUsecase: registerUsecase,
-		Env:             env,
+		Configs:         config,
 	}
 }
 

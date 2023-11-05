@@ -7,10 +7,10 @@ import (
 	"github.com/nguyendhst/lagile/shared/constant"
 )
 
-func NewPrivateUserRouter(env *config.Env, server *httpserver.Server) {
+func NewPrivateUserRouter(cfg *config.Config, server *httpserver.Server) {
 	userRoute := server.Prefix.Group(constant.USER_ROUTE_PREFIX)
 
 	// Apply middleware
-	userRoute.Use(middleware.JWTMiddleware(env.Secret.JwtSecret.Access.Key))
+	userRoute.Use(middleware.JWTMiddleware(cfg.Env.Secret.JwtSecret.Access.Key))
 	// Login
 }

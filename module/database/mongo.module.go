@@ -12,9 +12,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func NewMongoClient(env *config.Env) (*mongo.Client, error) {
+func NewMongoClient(cfg *config.Config) (*mongo.Client, error) {
 	withRetry := 3
-	uri := getMongoDSN(env)
+	uri := getMongoDSN(cfg)
 
 	var client *mongo.Client
 	var err error
@@ -33,10 +33,10 @@ func NewMongoClient(env *config.Env) (*mongo.Client, error) {
 	return client, nil
 }
 
-func getMongoDSN(env *config.Env) string {
+func getMongoDSN(cfg *config.Config) string {
 	return fmt.Sprintf("mongodb://%s:%s@%s/?retryWrites=true&w=majority",
-		env.Database.Mongo.User,
-		env.Database.Mongo.Password,
-		env.Database.Mongo.Host,
+		cfg.Env.Database.Mongo.User,
+		cfg.Env.Database.Mongo.Password,
+		cfg.Env.Database.Mongo.Host,
 	)
 }

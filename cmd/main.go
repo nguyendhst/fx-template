@@ -13,18 +13,22 @@ import (
 )
 
 func main() {
-	env := flag.String("env", "local", "Environment")
+	env := flag.String("env", "development", "Environment")
 	flag.Parse()
 
-	cfg, err := config.New(*env)
+	if *env == "" {
+		panic("Environment is required")
+	}
+
+	configs, err := config.New(*env)
 	if err != nil {
 		panic(err)
 	}
 
 	app := fx.New(
-		core.GetModule(cfg.Env),
+		core.GetModule(configs),
 		logger.Module,
-		database.GetModule(cfg.Env),
+		database.GetModule(configs),
 		route.Module,
 		// fx.Invoke(route.NewRouter),
 

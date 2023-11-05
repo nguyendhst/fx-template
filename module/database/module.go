@@ -6,13 +6,13 @@ import (
 	"go.uber.org/fx"
 )
 
-func GetModule(env config.Env) fx.Option {
+func GetModule(cfg *config.Config) fx.Option {
 	var opts []fx.Option
 
-	if env.Database.Postgres.Host != "" {
+	if cfg.Env.Database.Postgres.Host != "" {
 		opts = append(opts, fx.Provide(NewPostgresClient))
 	}
-	if env.Database.Mongo.Host != "" {
+	if cfg.Env.Database.Mongo.Host != "" {
 		opts = append(opts, fx.Provide(NewMongoClient))
 	}
 

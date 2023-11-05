@@ -13,10 +13,10 @@ import (
 )
 
 // New Postgres client
-func NewPostgresClient(env *config.Env) (*sqlc.Queries, error) {
+func NewPostgresClient(cfg *config.Config) (*sqlc.Queries, error) {
 	// ctx := context.Background()
 	withRetry := 3
-	uri := getDSN(env)
+	uri := getDSN(cfg)
 
 	var client *sqlc.Queries
 	var sqldb *sql.DB
@@ -36,13 +36,19 @@ func NewPostgresClient(env *config.Env) (*sqlc.Queries, error) {
 	return client, nil
 }
 
-func getDSN(env *config.Env) string {
+func getDSN(cfg *config.Config) string {
+	fmt.Printf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		cfg.Env.Database.Postgres.User,
+		cfg.Env.Database.Postgres.Password,
+		cfg.Env.Database.Postgres.Host,
+		strconv.Itoa(cfg.Env.Database.Postgres.Port),
+		cfg.Env.Database.Postgres.Name)
 	return fmt.Sprintf(
 		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		env.Database.Postgres.User,
-		env.Database.Postgres.Password,
-		env.Database.Postgres.Host,
-		strconv.Itoa(env.Database.Postgres.Port),
-		env.Database.Postgres.Name,
+		cfg.Env.Database.Postgres.User,
+		cfg.Env.Database.Postgres.Password,
+		cfg.Env.Database.Postgres.Host,
+		strconv.Itoa(cfg.Env.Database.Postgres.Port),
+		cfg.Env.Database.Postgres.Name,
 	)
 }

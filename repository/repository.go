@@ -9,27 +9,26 @@ import (
 	"go.uber.org/fx"
 )
 
+var Module = fx.Options(
+	fx.Provide(
+		NewUserRepository,
+	),
+)
+
 type (
 	params struct {
 		fx.In
 		// should be DB Module instead -?
-		postgres *sqlc.Queries `optional:"true"`
-		mongo    *mongo.Client `optional:"true"`
-		cfg      *config.Env
+		Postgres *sqlc.Queries `optional:"true"`
+		Mongo    *mongo.Client `optional:"true"`
+		Configs  *config.Config
 	}
 )
 
-// Provide your repository implementations here.
-func New() fx.Option {
-	return fx.Provide(
-		NewUserRepository,
-	)
-}
-
 func NewUserRepository(p params) UserRepository {
-	s := p.cfg.Repository.User.Store
+	s := p.Configs.Repository.User.Store
 	if s == constant.STORE_TYPE_POSTGRES {
-		return user_postgres.NewRepository(p.postgres)
+		return user_postgres.NewRepository(p.Postgres)
 	}
 	if s == constant.STORE_TYPE_MONGO {
 		return nil

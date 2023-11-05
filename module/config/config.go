@@ -1,6 +1,9 @@
 package config
 
-import "fmt"
+import (
+	"fmt"
+	"path/filepath"
+)
 
 type (
 	Config struct {
@@ -9,6 +12,7 @@ type (
 
 	ConfigReader interface {
 		ReadConfig() (*Config, error)
+		SetFilePath(filePath string)
 	}
 
 	ProductionConfigReader struct{}
@@ -20,7 +24,7 @@ type (
 )
 
 func New(env string) (*Config, error) {
-	configReader, err := NewConfigReader(env, "", []string{})
+	configReader, err := NewConfigReader(env)
 	if err != nil {
 		panic(err)
 	}
@@ -38,6 +42,10 @@ func (r *ProductionConfigReader) ReadConfig() (*Config, error) {
 	return &Config{}, nil
 }
 
+func (r *ProductionConfigReader) SetFilePath(filePath string) {
+	// Do nothing
+}
+
 func (r *LocalConfigReader) ReadConfig() (*Config, error) {
 	// Search for config file in searchPaths and read it
 	env, err := NewLocalEnv(r.filePath, r.searchPaths...)
@@ -48,11 +56,24 @@ func (r *LocalConfigReader) ReadConfig() (*Config, error) {
 	return &Config{*env}, nil
 }
 
-func NewConfigReader(env string, filePath string, searchPaths []string) (ConfigReader, error) {
+func (r *LocalConfigReader) SetFilePath(filePath string) {
+	r.filePath = filePath
+}
+
+func NewConfigReader(env string) (ConfigReader, error) {
 	switch env {
 	case "production":
 		return &ProductionConfigReader{}, nil
-	case "local":
+	case "development":
+		rootPath, err := filepath.Abs(".")
+		if err != nil {
+			return nil, err
+		}
+		filePath, err := filepath.Abs(filepath.Join(rootPath, "server-config.dev.yaml"))
+		if err != nil {
+			return nil, err
+		}
+		searchPaths := []string{".", "../.."}
 		return &LocalConfigReader{filePath, searchPaths}, nil
 	default:
 		return nil, fmt.Errorf("unknown environment: %s", env)

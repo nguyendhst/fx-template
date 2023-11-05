@@ -9,12 +9,12 @@ import (
 	"go.uber.org/fx"
 )
 
-func GetModule(cfg config.Env) fx.Option {
+func GetModule(cfg *config.Config) fx.Option {
 	return fx.Options(
 		fx.Supply(cfg),
 		httpserver.Module,
-		usecase.New(),
-		repository.New(),
+		repository.Module,
+		usecase.Module,
 		controller.New(),
 	)
 }

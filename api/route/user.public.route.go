@@ -7,7 +7,7 @@ import (
 	"github.com/nguyendhst/lagile/shared/constant"
 )
 
-func NewPublicUserRouter(env *config.Env, server *httpserver.Server, controller *register.RegisterController) {
+func NewPublicUserRouter(cfg *config.Config, server *httpserver.Server, controller *register.RegisterController) {
 	userRoute := server.Prefix.Group(constant.USER_ROUTE_PREFIX)
 
 	userRoute.POST("/register", controller.RegisterUser)

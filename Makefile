@@ -48,3 +48,9 @@ test:
 test-coverage:
 	go test -v ./... -coverprofile=coverage.out
 	go tool cover -html=coverage.out
+
+run-prod:
+	go run cmd/main.go -env=production
+
+run-dev:
+	go run cmd/main.go -env=development

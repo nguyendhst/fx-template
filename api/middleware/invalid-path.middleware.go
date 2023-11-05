@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"github.com/labstack/echo/v4"
-	resperr "github.com/nguyendhst/lagile/domain/response/error"
+	error_response "github.com/nguyendhst/lagile/domain/response/error"
 )
 
 func InvalidPathResponseFormatMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
@@ -10,10 +10,10 @@ func InvalidPathResponseFormatMiddleware(next echo.HandlerFunc) echo.HandlerFunc
 		// Call the next handler
 		err := next(c)
 		if err != nil {
-			return resperr.DataNotFoundError(
+			return error_response.DataNotFoundError(
 				c,
-				resperr.PATH_NOT_FOUND_MESSAGE,
-				resperr.PATH_NOT_FOUND_CODE,
+				error_response.PATH_NOT_FOUND_MESSAGE,
+				error_response.PATH_NOT_FOUND_CODE,
 			)
 		}
 

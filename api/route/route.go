@@ -8,26 +8,29 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Provide(NewRouter)
+// var Module = fx.Provide(New)
+// Setting up the router -- Does not need to return anything
+var Module = fx.Invoke(New)
 
 type (
 	Params struct {
 		fx.In
 
-		Env                *config.Env
+		Configs            *config.Config
 		Server             *httpserver.Server
 		LoginController    *adminLogin.AdminLoginController
 		RegisterController *register.RegisterController
 	}
 )
 
-func NewRouter(p Params) {
+func New(p Params) {
+	// TODO: move this to config
 	s := p.Server.SetPrefix("/api/v1")
 
 	// Public API for authentication
-	NewAuthenticationRouter(p.Env, s, p.LoginController)
-	NewPublicUserRouter(p.Env, s, p.RegisterController)
+	NewAuthenticationRouter(p.Configs, s, p.LoginController)
+	NewPublicUserRouter(p.Configs, s, p.RegisterController)
 
 	// Private API for user
-	NewPrivateUserRouter(p.Env, s)
+	NewPrivateUserRouter(p.Configs, s)
 }

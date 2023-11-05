@@ -10,4 +10,10 @@
 		"sslmode",
 		"Usecase"
 	],
+	"go.testFlags": [
+		"-fileYml=../../server-config.dev.yaml",
+		"-fileEnv=../../dev.env",
+	],
+	"go.coverOnSave": true,
+	"go.coverOnSingleTest": true,
 }

@@ -4,10 +4,9 @@ import (
 	"go.uber.org/fx"
 )
 
-// Provide your usecase implementations here.
-func New() fx.Option {
-	return fx.Provide(
+var Module = fx.Options(
+	fx.Provide(
 		NewAdminLoginUsecase,
 		NewRegisterUsecase,
-	)
-}
+	),
+)

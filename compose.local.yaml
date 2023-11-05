@@ -24,7 +24,7 @@ services:
     env_file:
       - .env
     networks:
-      - app-network
+      - lagile-network
 
   redis:
     image: redis
@@ -34,8 +34,8 @@ services:
     volumes:
       - ./db-data/redis:/data
     networks:
-      - app-network
+      - lagile-network
 
 networks:
-  app-network:
+  lagile-network:
     driver: bridge

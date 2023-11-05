@@ -16,10 +16,10 @@ type loginUsecase struct {
 	contextTimeout time.Duration
 }
 
-func NewAdminLoginUsecase(userRepository repository.UserRepository, env *config.Env) auth.BasicLoginUsecase {
+func NewAdminLoginUsecase(userRepository repository.UserRepository, cfg *config.Config) auth.BasicLoginUsecase {
 	return &loginUsecase{
 		userRepository: userRepository,
-		contextTimeout: time.Millisecond * time.Duration(env.App.Login.Timeout),
+		contextTimeout: time.Millisecond * time.Duration(cfg.Env.App.Login.Timeout),
 	}
 }
 

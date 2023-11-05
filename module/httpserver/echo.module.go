@@ -15,8 +15,8 @@ import (
 
 type Params struct {
 	fx.In
-	Env    *config.Env
-	Logger logger.Logger
+	Configs *config.Config
+	Logger  logger.Logger
 }
 
 type Server struct {
@@ -87,12 +87,12 @@ func NewEchoServer(p Params) *Server {
 	)
 
 	rateLimit := 0
-	if p.Env.App.Server.RateLimit.Enabled {
-		rateLimit = p.Env.App.Server.RateLimit.Max
+	if p.Configs.Env.App.Server.RateLimit.Enabled {
+		rateLimit = p.Configs.Env.App.Server.RateLimit.Max
 	}
 
 	return &Server{Server: server, ServerConfig: &ServerConfig{
-		ServerAddress: p.Env.App.Server.Address,
+		ServerAddress: p.Configs.Env.App.Server.Address,
 		RateLimit:     rateLimit,
 		Logger:        p.Logger,
 	}}

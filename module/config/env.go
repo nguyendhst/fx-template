@@ -19,10 +19,7 @@ func NewProductionEnv() (*Env, error) {
 func NewLocalEnv(filePath string, searchPaths ...string) (*Env, error) {
 	v := viper.New()
 
-	v.SetConfigName("server-config")
-
 	if filePath != "" {
-		fmt.Println(filePath)
 		v.SetConfigFile(filePath)
 	} else {
 		for _, sp := range searchPaths {
@@ -37,6 +34,15 @@ func NewLocalEnv(filePath string, searchPaths ...string) (*Env, error) {
 			if !errors.As(err, &viper.ConfigFileNotFoundError{}) {
 				return &Env{}, fmt.Errorf("could not read in config from viper: %w", err)
 			}
+		}
+	}
+	// Could handle cases where config file is .env -- but not necessary
+	if strings.HasSuffix(v.ConfigFileUsed(), ".env") {
+		for _, key := range v.AllKeys() {
+			v.Set(strings.ReplaceAll(key, "_", "."), v.Get(key))
+		}
+		for _, key := range v.AllKeys() {
+			v.Set(key, v.Get(strings.ToUpper(strings.ReplaceAll(key, ".", "_"))))
 		}
 	}
 
@@ -77,7 +83,7 @@ func setDefault(vi *viper.Viper, key string, value interface{}) {
 
 func bindEnv(vi *viper.Viper, key string) {
 	envVar := strings.ReplaceAll(key, ".", "_")
-	envVar = strings.ToUpper(envVar)
+	envVar = strings.ToUpper(strings.Trim(envVar, " "))
 
 	vi.BindEnv(key, envVar)
 }
