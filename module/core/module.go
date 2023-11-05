@@ -1,11 +1,11 @@
 package core
 
 import (
-	"github.com/nguyendhst/lagile/api/controller"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/module/httpserver"
-	"github.com/nguyendhst/lagile/repository"
-	"github.com/nguyendhst/lagile/usecase"
+	"github.com/nguyendhst/fx-template/api/controller"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/module/httpserver"
+	"github.com/nguyendhst/fx-template/repository"
+	"github.com/nguyendhst/fx-template/usecase"
 	"go.uber.org/fx"
 )
 

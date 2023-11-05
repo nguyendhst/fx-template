@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	u "github.com/nguyendhst/lagile/domain/user"
+	u "github.com/nguyendhst/fx-template/domain/user"
 )
 
 type BasicLoginRequest struct {

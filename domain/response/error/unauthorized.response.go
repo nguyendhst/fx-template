@@ -1,7 +1,7 @@
 package error
 
 import (
-	"github.com/nguyendhst/lagile/domain/response"
+	"github.com/nguyendhst/fx-template/domain/response"
 )
 
 const (

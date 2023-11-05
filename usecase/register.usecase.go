@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	domain "github.com/nguyendhst/lagile/domain/user"
-	"github.com/nguyendhst/lagile/repository"
+	domain "github.com/nguyendhst/fx-template/domain/user"
+	"github.com/nguyendhst/fx-template/repository"
 )
 
 type (

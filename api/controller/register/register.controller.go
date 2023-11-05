@@ -2,9 +2,9 @@ package register
 
 import (
 	"github.com/labstack/echo/v4"
-	resperr "github.com/nguyendhst/lagile/domain/response/error"
-	domain "github.com/nguyendhst/lagile/domain/user"
-	"github.com/nguyendhst/lagile/module/config"
+	resperr "github.com/nguyendhst/fx-template/domain/response/error"
+	domain "github.com/nguyendhst/fx-template/domain/user"
+	"github.com/nguyendhst/fx-template/module/config"
 )
 
 type (

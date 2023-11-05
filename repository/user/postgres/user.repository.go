@@ -4,9 +4,9 @@ import (
 	"context"
 	"strconv"
 
-	domain "github.com/nguyendhst/lagile/domain/user"
-	"github.com/nguyendhst/lagile/shared/util"
-	sqlc "github.com/nguyendhst/lagile/sqlc/generated"
+	domain "github.com/nguyendhst/fx-template/domain/user"
+	"github.com/nguyendhst/fx-template/shared/util"
+	sqlc "github.com/nguyendhst/fx-template/sqlc/generated"
 )
 
 type userRepository struct {

@@ -1,10 +1,10 @@
 package route
 
 import (
-	register "github.com/nguyendhst/lagile/api/controller/register"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/module/httpserver"
-	"github.com/nguyendhst/lagile/shared/constant"
+	register "github.com/nguyendhst/fx-template/api/controller/register"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/module/httpserver"
+	"github.com/nguyendhst/fx-template/shared/constant"
 )
 
 func NewPublicUserRouter(cfg *config.Config, server *httpserver.Server, controller *register.RegisterController) {

@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	auth "github.com/nguyendhst/lagile/domain/auth"
-	user "github.com/nguyendhst/lagile/domain/user"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/repository"
-	"github.com/nguyendhst/lagile/shared/util"
+	auth "github.com/nguyendhst/fx-template/domain/auth"
+	user "github.com/nguyendhst/fx-template/domain/user"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/repository"
+	"github.com/nguyendhst/fx-template/shared/util"
 )
 
 type loginUsecase struct {

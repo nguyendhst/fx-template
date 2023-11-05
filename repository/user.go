@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	domain "github.com/nguyendhst/lagile/domain/user"
+	domain "github.com/nguyendhst/fx-template/domain/user"
 )
 
 type (

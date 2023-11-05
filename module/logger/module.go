@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/nguyendhst/lagile/shared/constant"
+	"github.com/nguyendhst/fx-template/shared/constant"
 
 	"go.uber.org/fx"
 )

@@ -1,7 +1,7 @@
 package oauth2
 
 import (
-	"github.com/nguyendhst/lagile/module/config"
+	"github.com/nguyendhst/fx-template/module/config"
 	"go.uber.org/fx"
 )
 

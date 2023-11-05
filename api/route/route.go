@@ -1,10 +1,10 @@
 package route
 
 import (
-	adminLogin "github.com/nguyendhst/lagile/api/controller/admin-login"
-	register "github.com/nguyendhst/lagile/api/controller/register"
-	"github.com/nguyendhst/lagile/module/config"
-	"github.com/nguyendhst/lagile/module/httpserver"
+	adminLogin "github.com/nguyendhst/fx-template/api/controller/admin-login"
+	register "github.com/nguyendhst/fx-template/api/controller/register"
+	"github.com/nguyendhst/fx-template/module/config"
+	"github.com/nguyendhst/fx-template/module/httpserver"
 	"go.uber.org/fx"
 )
 
