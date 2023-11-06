@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 
-	"github.com/nguyendhst/fx-template/api/route"
 	"github.com/nguyendhst/fx-template/module/config"
 	"github.com/nguyendhst/fx-template/module/core"
 	"github.com/nguyendhst/fx-template/module/database"
@@ -29,8 +28,6 @@ func main() {
 		core.GetModule(configs),
 		logger.Module,
 		database.GetModule(configs),
-		route.Module,
-		// fx.Invoke(route.NewRouter),
 
 		fx.Invoke(func(server *httpserver.Server) error {
 			go server.Start()

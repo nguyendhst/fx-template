@@ -2,6 +2,7 @@ package core
 
 import (
 	"github.com/nguyendhst/fx-template/api/controller"
+	"github.com/nguyendhst/fx-template/api/route"
 	"github.com/nguyendhst/fx-template/module/config"
 	"github.com/nguyendhst/fx-template/module/httpserver"
 	"github.com/nguyendhst/fx-template/repository"
@@ -15,6 +16,7 @@ func GetModule(cfg *config.Config) fx.Option {
 		httpserver.Module,
 		repository.Module,
 		usecase.Module,
+		route.Module,
 		controller.New(),
 	)
 }
